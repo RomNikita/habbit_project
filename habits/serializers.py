@@ -1,8 +1,8 @@
 from rest_framework import serializers
 
 from habits.models import Habit
-from habits.validators import HabbitRelatedAndAwardValidator, TimeToCompleteValidator, RelatedAndNiceValidator, \
-    PeriodicityValidator
+from habits.validators import HabitRelatedAndAwardValidator, TimeToCompleteValidator, RelatedAndNiceValidator, \
+    PeriodicityValidator, NiceHabitValidator
 
 
 class HabitSerializer(serializers.ModelSerializer):
@@ -10,10 +10,11 @@ class HabitSerializer(serializers.ModelSerializer):
         model = Habit
         fields = '__all__'
         validators = [
-            HabbitRelatedAndAwardValidator(),
+            HabitRelatedAndAwardValidator(),
             TimeToCompleteValidator(),
             RelatedAndNiceValidator(),
-            PeriodicityValidator()
+            PeriodicityValidator(),
+            NiceHabitValidator()
         ]
 
 

@@ -1,1 +1,2 @@
-exclude = .venv/
+ignore = D203
+exclude = .git,__pycache__,docs/source/conf.py,old,build,dist,.venv/

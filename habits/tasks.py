@@ -6,7 +6,6 @@ from django_celery_beat.models import PeriodicTask, CrontabSchedule
 from config import settings
 from habits.models import Habit
 from habits.services import send_telegram_message
-from users.models import User
 
 
 @shared_task

@@ -3,13 +3,13 @@ import datetime
 from rest_framework import serializers
 
 
-class HabbitRelatedAndAwardValidator:
+class HabitRelatedAndAwardValidator:
 
     def __call__(self, data):
-        is_related_habbit = data.get('is_related_habbit')
+        is_related_habit = data.get('is_related_habit')
         award = data.get('award')
 
-        if is_related_habbit and award:
+        if is_related_habit and award:
             raise serializers.ValidationError(
                 "Связанная привычка и указание вознаграждения не могут быть выбраны одновременно.")
 
@@ -27,26 +27,27 @@ class TimeToCompleteValidator:
 
 class RelatedAndNiceValidator:
     def __call__(self, data):
-        is_nice_habbit = data.get('is_nice_habbit')
-        is_related_habbit = data.get('is_related_habbit')
+        is_nice_habit = data.get('is_nice_habit')
+        is_related_habit = data.get('is_related_habit')
 
-        if is_related_habbit and is_nice_habbit == False:
-            raise serializers.ValidationError("Связанная привычка должна быть приятной привычкой")
+        if is_related_habit:
+            if not is_nice_habit:
+                raise serializers.ValidationError("Связанная привычка должна быть приятной привычкой")
 
 
-class NiceHabbitValidator:
+class NiceHabitValidator:
     def __call__(self, data):
-        is_nice_habbit = data.get('is_nice_habbit')
-        is_related_habbit = data.get('is_related_habbit')
+        is_nice_habit = data.get('is_nice_habit')
         award = data.get('award')
+        is_related_habit = data.get('is_related_habit')
 
-        if is_nice_habbit == True:
+        if is_nice_habit:
             if award:
                 raise serializers.ValidationError(
-                    "У приятной привычки не должно быть связанной привычки или награждения")
-            if is_related_habbit:
+                    "У приятной привычки не может быть указано вознаграждение.")
+            if is_related_habit:
                 raise serializers.ValidationError(
-                    "У приятной привычки не должно быть связанной привычки или награждения")
+                    "У приятной привычки не может быть связанной привычки.")
 
 
 class PeriodicityValidator:

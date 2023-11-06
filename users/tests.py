@@ -33,7 +33,6 @@ class UserRegistrationViewTest(TestCase):
         self.assertFalse(User.objects.filter(email=data['email']).exists())
 
     def test_registration_with_existing_email(self):
-        existing_user = User.objects.create(email="existing@example.com", password="existingpassword")
         data = {
             "email": "existing@example.com",
             "password": "testpassword",

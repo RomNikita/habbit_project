@@ -1,9 +1,8 @@
 from django.test import TestCase
-from django.urls import reverse, reverse_lazy
+from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APIClient
 
-from users.serializers import UserSerializer
 from .models import Habit
 from users.models import User
 
